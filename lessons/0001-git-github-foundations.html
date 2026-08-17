@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day 1 — Git + GitHub Foundations</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<h1>Day 1 — Git + GitHub Foundations</h1>
+
+<p><strong>~30 min read + 60 min hands-on</strong></p>
+
+<p><em>Goal: Create your first repo, make commits, and push to GitHub. By the end you'll
+have a live repo at <code>https://github.com</code> with your code on it.</em></p>
+
+<h2>What is Git? What is GitHub?</h2>
+
+<p><strong>Git</strong> is a version-control system — it saves snapshots of your
+files so you can go back, compare changes, and work with others without
+overwriting each other's work.</p>
+
+<p><strong>GitHub</strong> is a web service that hosts Git repos online. It adds
+a UI for code review, issue tracking, and collaboration on top of Git.</p>
+
+<blockquote>Git runs on your computer. GitHub is the website where you upload
+your Git repo so others can see it.
+</blockquote>
+
+<h2>Step 0 — Prerequisites</h2>
+
+<table>
+<tr><th>Tool</th><th>Check</th><th>Install if missing</th></tr>
+<tr><td>Git</td><td><code>git --version</code></td><td><code>sudo apt install git</code></td></tr>
+<tr><td>GitHub CLI</td><td><code>gh --version</code></td><td><code>sudo apt install gh</code> or <a href="https://cli.github.com">cli.github.com</a></td></tr>
+<tr><td>GitHub account</td><td><code>gh auth status</code></td><td><a href="https://github.com/signup">github.com/signup</a></td></tr>
+</table>
+
+<p>Authenticate once:</p>
+<pre><code>gh auth login</code></pre>
+
+<h2>Step 1 — Create your first repo</h2>
+
+<pre><code>mkdir my-first-repo && cd my-first-repo
+echo "# My First Repo" > README.md
+git init
+git add README.md
+git commit -m "Initial commit"</code></pre>
+
+<h2>Step 2 — Push to GitHub</h2>
+
+<p>Create the repo on GitHub, then link and push:</p>
+<pre><code>gh repo create my-first-repo --public --source=. --push</code></pre>
+
+<p>This single command creates the repo on GitHub, adds the remote,
+and pushes your local <code>main</code> branch.</p>
+
+<p>Visit <code>https://github.com/&lt;your-username&gt;/my-first-repo</code> —
+you should see <code>README.md</code> on the page.</p>
+
+<h2>Step 3 — Make a second commit</h2>
+
+<pre><code>echo "Some content" > notes.txt
+git add notes.txt
+git commit -m "Add notes file"
+git push</code></pre>
+
+<h2>Key concepts in 60 seconds</h2>
+
+<table>
+<tr><th>Command</th><th>What it does</th></tr>
+<tr><td><code>git init</code></td><td>Creates a Git repo in the current folder</td></tr>
+<tr><td><code>git add &lt;file&gt;</code></td><td>Stages a file for the next commit</td></tr>
+<tr><td><code>git commit -m "msg"</code></td><td>Saves a snapshot in the repo history</td></tr>
+<tr><td><code>git push</code></td><td>Uploads commits to GitHub</td></tr>
+<tr><td><code>git pull</code></td><td>Downloads commits from GitHub</td></tr>
+<tr><td><code>gh repo create</code></td><td>Creates a repo on GitHub from the CLI</td></tr>
+</table>
+
+<h2>Try this at home</h2>
+<div class="checklist">
+  <li>Create a repo called <code>hello-github</code> with a <code>hello.py</code> that prints your name</li>
+  <li>Commit and push it to GitHub</li>
+  <li>Visit the GitHub URL in your browser — confirm the file is there</li>
+  <li>Add a new line to <code>hello.py</code>, commit, and push again</li>
+</div>
+
+<p><strong>⏱ Time check:</strong> If the above felt natural, you're ready for
+Day 2. If <code>git push</code> or <code>git commit</code> felt confusing,
+re-read the <a href="https://docs.github.com/en/get-started/hello-world">GitHub Hello World guide</a>.</p>
+
+<h2>⏭ Next: Day 2 — Branches, Pull Requests & Collaboration</h2>
+
+<p>In Day 2 you'll learn branching, forking, and pull requests — the tools
+that let you contribute to other people's projects safely.</p>
+
+<div class="credit">
+See also: <a href="../reference/glossary.md">Quick Reference — GitHub</a> ·
+<a href="https://docs.github.com/en/get-started/hello-world">GitHub Hello World (official)</a>
+</div>
+
+</body>
+</html>

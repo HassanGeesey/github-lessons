@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day 2 — Branches, Pull Requests & Collaboration</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<h1>Day 2 — Branches, PRs & Collaboration</h1>
+
+<p><strong>~25 min read + 65 min hands-on</strong></p>
+<p><em>Goal: Understand branching, create a PR, fork a repo, and review code.</em></p>
+
+<h2>Why branches matter</h2>
+
+<p>Never commit directly to <code>main</code>. Branches let you isolate work
+so experiments don't break the live site. The GitHub Flow is:</p>
+
+<pre><code>main branch (live)  ←  feature branch →  Pull Request →  merge</code></pre>
+
+<h2>Branching workflow</h2>
+
+<pre><code>git switch -c fix-typo       # create + switch to new branch
+# ... edit files ...
+git add .
+git commit -m "Fix typo on homepage"
+git push origin fix-typo</code></pre>
+
+<p>Then go to the GitHub URL that <code>gh</code> prints, or open
+<code>https://github.com/&lt;user&gt;/&lt;repo&gt;/pull/new/fix-typo</code>.</p>
+
+<h2>Create a Pull Request</h2>
+
+<pre><code>gh pr create --title "Fix typo on homepage" \
+  --body "Corrected spelling of 'recieve' → 'receive'"</code></pre>
+
+<p>Or click the green "Compare & pull request" button on GitHub after pushing.</p>
+
+<h2>Merging</h2>
+
+<p>After review, merge the PR:</p>
+<pre><code>gh pr merge --main --delete  # merges to main, deletes branch locally</code></pre>
+
+<h2>Forking someone else's repo</h2>
+
+<p>A <strong>fork</strong> is your personal copy of someone else's repo.
+It's how you contribute to open-source projects you don't own.</p>
+
+<pre><code># 1. Click "Fork" on the repo's GitHub page
+# 2. Clone your fork
+gh repo clone &lt;your-username&gt;/&lt;repo&gt;
+cd &lt;repo&gt;
+
+# 3. Create a branch and make changes
+git switch -c my-feature
+# ...edit...
+git add . && git commit -m "Add my feature"
+git push
+
+# 4. Create a PR from your fork to the upstream repo
+gh pr create --base main --head &lt;your-username&gt;:my-feature</code></pre>
+
+<h2>GitHub Issues</h2>
+
+<pre><code>gh issue create --title "Bug: login fails on Safari" \
+  --body "Steps to reproduce: ..." \
+  --label "bug" --label "P1"</code></pre>
+
+<p>Issues link to PRs and vice versa. Reference an issue in a commit:</p>
+<pre><code>git commit -m "Fix login timeout #42"</code></pre>
+
+<h2>GitHub Projects ( Kanban board )</h2>
+
+<p>Projects let you drag issues/PRs across columns (Todo → In Progress → Done).
+Create one at <code>/&lt;owner&gt;/&lt;repo&gt;/projects</code> and link issues by
+typing <code>#</code> + issue number in a card comment.</p>
+
+<h2>Try this at home</h2>
+<div class="checklist">
+  <li>In your <code>hello-github</code> repo from Day 1, create a branch called <code>add-greeting</code></li>
+  <li>Add a greeting line to your Python file, commit, and push the branch</li>
+  <li>Open a PR on GitHub.com (or via <code>gh pr create</code>)</li>
+  <li>Merge the PR and verify it appears on <code>main</code> on GitHub</li>
+  <li>Fork <code>octocat/Spoon-Knife</code>, make a tiny edit, and open a PR back to upstream</li>
+</div>
+
+<p><strong>⏱ Time check:</strong> If you can comfortably create a branch,
+push it, open a PR, and merge it, you're ready for Day 3.</p>
+
+<h2>⏭ Next: Day 3 — CI/CD with GitHub Actions</h2>
+
+<p>Automate testing and deploy to your VPS whenever you push to <code>main</code>.</p>
+
+<div class="credit">
+See also: <a href="../reference/glossary.md">Quick Reference — GitHub</a> ·
+<a href="https://docs.github.com/en/get-started/using-github/github-flow">GitHub Flow (official)</a> ·
+<a href="https://cli.github.com/manual/">gh CLI manual</a>
+</div>
+
+</body>
+</html>
